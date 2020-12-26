@@ -1,1 +1,102 @@
 # Neo4j
+
+### one 
+~~~cypher
+match(a:Article)-[:REFERENCES]->(reciver:Article) match(o:Author)-[:WROTE]->(reciver:Article)
+return o.name, count(reciver) as count order 
+by count desc 
+limit 5
+~~~
+
+### two
+```sql
+MATCH(author1:Author)-[:WROTE]->(a:Article)
+MATCH(author2:Author)-[:WROTE]->(a)
+where author1.name <> author2.name
+MERGE (author1)-[:COLLABORATED]->(author2)
+
+//then 
+
+MATCH(a:Author)-[c:COLLABORATED]->(b:Author)
+return a.name , count(c) as count
+order by count desc
+limit 5
+```
+### three
+```sql
+match(:Author)-[:WROTE]->(article:Article)
+with article as article,count(*) as c
+where c<2
+match(:Article)-[r:REFERENCES]->(article)
+return article.title, c, count(r) as citations
+order by citations desc
+```
+result -> "Juan M. Maldacena"
+
+### for
+```sql
+match(o:Author)-[:WROTE]->(a:Article)
+where a.year = date("2001")
+return o.name, count(o)
+```
+result -> "Mirjam Cvetic"	5
+
+### five
+```sql
+match(:Article)-[:REFERENCES]->(a:Article)
+where a.title CONTAINS 'gravity' and a.year = date("1998")
+return a.jurnal, count(*) as rank
+order by rank desc
+limit 1
+```
+result -> "Nucl.Phys."	855
+
+### six
+```sql
+match(:Article)-[:REFERENCES]->(a:Article)
+return a.title, count(*) as rank
+order by rank desc
+limit 5
+```
+result:
+|title|citations|
+|-|-|
+|The Large N Limit of Superconformal Field Theories and Supergravity"|	2414|
+|Anti De Sitter Space And Holography"	|1775|
+|"Gauge Theory Correlators from Non-Critical String Theory"	|1641|
+|"Monopole Condensation And Confinement In N=2 Supersymmetric Yang-Mills"	|1299|
+|"M Theory As A Matrix Model: A Conjecture"|	1199|
+
+
+### seven 
+```sql
+match(o:Author)-[:WROTE]->(a:Article)
+where a.abstract contains "holography" and a.abstract contains "anti de sitter"
+return o.name, a.title
+```
+result-> null
+```sql
+match(o:Author)-[:WROTE]->(a:Article)
+where a.abstract contains "holography" 
+return o.name, a.title
+```
+result: 
+|author name | title|
+|-|-|
+|"Petr Horava"	|"Probable Values of the Cosmological Constant in a Holographic Theory"|
+|"Djordje Minic"|	"Probable Values of the Cosmological Constant in a Holographic Theory"|
+|"U. Moschella"	|"Decomposing Quantum Fields on Branes"|
+|"R. Schaeffer"	|"Decomposing Quantum Fields on Branes"|
+|"J. Bros"	|"Decomposing Quantum Fields on Branes"|
+|"M. Bertola"|	"Decomposing Quantum Fields on Branes"|
+|"V. Gorini"	|"Decomposing Quantum Fields on Branes"|
+|"Itzhak Bars"|	"Two-Time Physics in Field Theory"|
+|"J.G. Russo"	|"Hyperbolic Spaces in String and M-Theory"|
+|"A. Kehagias"	|"Hyperbolic Spaces in String and M-Theory"|
+
+```sql
+match(o:Author)-[:WROTE]->(a:Article)
+where a.abstract contains "anti de sitter" 
+return o.name, a.title
+```
+return -> null
