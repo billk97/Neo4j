@@ -100,3 +100,22 @@ where a.abstract contains "anti de sitter"
 return o.name, a.title
 ```
 return -> null
+
+### eight
+
+```sql
+match(a:Author{name: 'C.N. Pope'})
+match(b:Author{name: 'M. Schweda'})
+match p=shortestPath((a)-[*]-(b))
+return p
+```
+result -> length = 4
+
+### nine
+```sql
+match(a:Author{name: 'C.N. Pope'})
+match(b:Author{name: 'M. Schweda'})
+match p=shortestPath((a)-[:WROTE]-(b))
+return p, length(p) as length
+```
+no result like no papers connect the two
