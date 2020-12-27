@@ -24,6 +24,13 @@ Merge (a:Author{name: row[1]})
 ```
 Added 15420 labels, created 15420 nodes, set 15420 properties, completed after 833 ms.
 
+```
+LOAD CSV FROM "file:///AuthorNodes.csv" as row
+match(a:Article{id: toInteger(row[0])})
+match(o:Author{name: row[1]})
+create(o)-[:WROTE]->(a)
+```
+
 ### one 
 ~~~cypher
 match(a:Article)-[:REFERENCES]->(reciver:Article) match(o:Author)-[:WROTE]->(reciver:Article)
@@ -31,6 +38,8 @@ return o.name, count(reciver) as count order
 by count desc 
 limit 5
 ~~~
+Created 58340 relationships, completed after 1529 ms.
+
 
 ### two
 ```sql
