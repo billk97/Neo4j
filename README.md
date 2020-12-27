@@ -1,5 +1,11 @@
 # Neo4j
 
+### 
+IMPORTING DATA
+```
+create constraint on (a:Author) assert a.name is unique; create constraint on (o:Article) assert o.id is unique;
+```
+
 ### one 
 ~~~cypher
 match(a:Article)-[:REFERENCES]->(reciver:Article) match(o:Author)-[:WROTE]->(reciver:Article)
