@@ -76,14 +76,19 @@ limit 5
 
 ### three
 ```sql
-match(:Author)-[:WROTE]->(article:Article)
-with article as article,count(*) as c
+match(a:Author)-[:WROTE]->(article:Article)
+with article as article,count(*) as c, a as a
 where c<2
-match(:Article)-[r:REFERENCES]->(article)
-return article.title, c, count(r) as citations
-order by citations desc
+return a.name, count(a.name) as amount
+order by amount desc 
 ```
-result -> "Juan M. Maldacena"
+|author name| number of papers|
+|-|-|
+|"C.N. Pope"|	127|
+|"H. Lu"|	122|
+|"A.A. Tseytlin"|	111|
+|"Edward Witten"	|98|
+|"Shinichi Nojiri"|	92|
 
 ### for
 ```sql
