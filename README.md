@@ -101,13 +101,13 @@ result -> "Ashok Das"	17
 
 ### five
 ```sql
-match(:Article)-[:REFERENCES]->(a:Article)
+match(a:Article)
 where a.title CONTAINS 'gravity' and a.year = date("1998")
 return a.jurnal, count(*) as rank
 order by rank desc
 limit 1
 ```
-result -> "Nucl.Phys."	855
+result -> "Nucl.Phys."	25
 
 ### six
 ```sql
