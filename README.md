@@ -2,8 +2,9 @@
 
 ### 
 IMPORTING DATA
-```
-create constraint on (a:Author) assert a.name is unique; create constraint on (o:Article) assert o.id is unique;
+```sql
+create constraint on (a:Author) assert a.name is unique; 
+create constraint on (o:Article) assert o.id is unique;
 ```
 
 loading article nodes 29555 nodes
@@ -16,7 +17,7 @@ a.jurnal = row[3],
 a.abstract = row[4]
 ```
 
-```
+```sql
 LOAD CSV FROM "file:///AuthorNodes.csv" as row
 2
 Merge (a:Author{name: row[1]})
@@ -24,7 +25,7 @@ Merge (a:Author{name: row[1]})
 ```
 Added 15420 labels, created 15420 nodes, set 15420 properties, completed after 833 ms.
 
-```
+```sql
 LOAD CSV FROM "file:///AuthorNodes.csv" as row
 match(a:Article{id: toInteger(row[0])})
 match(o:Author{name: row[1]})
