@@ -94,9 +94,10 @@ order by amount desc
 ```sql
 match(o:Author)-[:WROTE]->(a:Article)
 where a.year = date("2001")
-return o.name, count(o)
+return o.name, count(o) as count
+order by count desc limit 1
 ```
-result -> "Mirjam Cvetic"	5
+result -> "Ashok Das"	17
 
 ### five
 ```sql
