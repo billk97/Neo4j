@@ -66,6 +66,14 @@ return a.name , count(c) as count
 order by count desc
 limit 5
 ```
+|author|colaborations|
+|-|-|
+|"C.N. Pope"	|50|
+|"S. Ferrara"	|46|
+|"M. Schweda"	|46|
+|"H. Lu"	|45|
+|"C. Vafa"|	45|
+
 ### three
 ```sql
 match(:Author)-[:WROTE]->(article:Article)
