@@ -16,6 +16,14 @@ a.jurnal = row[3],
 a.abstract = row[4]
 ```
 
+```
+LOAD CSV FROM "file:///AuthorNodes.csv" as row
+2
+Merge (a:Author{name: row[1]})
+
+```
+Added 15420 labels, created 15420 nodes, set 15420 properties, completed after 833 ms.
+
 ### one 
 ~~~cypher
 match(a:Article)-[:REFERENCES]->(reciver:Article) match(o:Author)-[:WROTE]->(reciver:Article)
