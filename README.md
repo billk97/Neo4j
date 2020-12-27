@@ -6,6 +6,16 @@ IMPORTING DATA
 create constraint on (a:Author) assert a.name is unique; create constraint on (o:Article) assert o.id is unique;
 ```
 
+loading article nodes 29555 nodes
+```sql
+LOAD CSV FROM "file:///ArticleNodes.csv" as row
+CREATE (a:Article{id: toInteger(row[0])})
+set a.title = row[1],
+a.year = date(row[2]),
+a.jurnal = row[3],
+a.abstract = row[4]
+```
+
 ### one 
 ~~~cypher
 match(a:Article)-[:REFERENCES]->(reciver:Article) match(o:Author)-[:WROTE]->(reciver:Article)
