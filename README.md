@@ -40,6 +40,15 @@ limit 5
 ~~~
 Created 58340 relationships, completed after 1529 ms.
 
+```
+LOAD CSV FROM "file:///Citations.csv" as row
+with row, split(row[0], "	") as srow
+match(article1:Article{id: toInteger(srow[0])})
+match(article2:Article{id: toInteger(srow[1])})
+where article1.id <> article2.id
+create(article1)-[:REFRERENCES]->(article2)
+```
+
 
 ### two
 ```sql
