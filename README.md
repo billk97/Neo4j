@@ -19,7 +19,6 @@ a.abstract = row[4]
 
 ```sql
 LOAD CSV FROM "file:///AuthorNodes.csv" as row
-2
 Merge (a:Author{name: row[1]})
 
 ```
