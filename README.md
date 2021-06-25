@@ -1,5 +1,32 @@
 # Neo4j
 
+### Queres
+Queries:
+1. Which are the top 5 authors with the most citations (from other papers).
+Return author names and number of citations.
+2. Which are the top 5 authors with the most collaborations (with different
+authors). Return author names and number of collaborations.
+3. Which is the author who has wrote the most papers without collaborations.
+Return author name and number of papers.
+4. Which author published the most papers in 2001? Return author name and
+number of papers.
+5. Which is the journal with the most papers about “gravity” (derived only from
+the paper title) in 1998. Return journal and number of papers.
+6. Which are the top 5 papers with the most citations? Return paper title and
+number of citations.
+7. Which were the papers that use “holography” and “anti de sitter” (derived only
+from the paper abstract). Return authors and title.
+8. Find the shortest path between ‘C.N. Pope’ and ‘M. Schweda’ authors (use any
+type of edges). Return the path and the length of the path. Comment about
+the type of nodes and edges of the path.
+9. Run again the previous query (8) but now use only edges between authors
+and papers. Comment about the type of nodes and edges of the path.
+Compare the results with query 8.
+10. Find all authors with shortest path lengths > 25 from author ‘Edward Witten’.
+The shortest paths will be calculated only on edges between authors and
+articles. Return author name, the length and the paper titles for each path.
+
+
 ### 
 IMPORTING DATA
 ```sql
